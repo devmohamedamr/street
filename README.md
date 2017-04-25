@@ -1,0 +1,2 @@
+# street
+student managment system
