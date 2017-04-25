@@ -1,0 +1,141 @@
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            questions page
+            <small>it all starts here</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Examples</a></li>
+            <li class="active">Blank page</li>
+        </ol>
+    </section>
+    <section class="content">
+
+    <div class="row">
+    <div class="col-md-8">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_1" data-toggle="tab">add new question</a></li>
+                <li><a href="#tab_2" data-toggle="tab">all questions</a></li>
+                <li><a href="#tab_3" data-toggle="tab">time of test</a></li>
+                <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+                    <form action="ques.php" method="post">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <?php if(isset($errors)) { ?>
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                    <?php foreach($errors as $error) { ?>
+                                    <ul>
+                                        <li><?php echo $error; ?></li>
+                                    </ul>
+                                    <?php } ?>
+                                </div>
+                                <?php } ?>
+                                <?php if(strlen($success)>0) { ?>
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                    <ul>
+                                        <li><?php echo $success; ?></li>
+                                    </ul>
+                                    </div>
+                                <?php } ?>
+                                <div class="form-group">
+                                    <label>category of questions</label>
+                                    <select name="select" class="form-control select2" style="width: 100%;">
+                                        <?php foreach($data as $d) { ?>
+                                        <option value="<?php echo $d->id; ?>"><?php echo $d->cat_name; ?></option>
+                                            <?php } ?>
+                                    </select><br>
+                                    <label>test of type</label><br>
+                                    <select name="general" class="form-control select2" style="width: 100%;">
+                                        <?php foreach($time as $t){ ?>
+                                        <option value="<?php echo $t->id; ?>"><?php echo $t->type; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="text" class="form-control" name="ques" placeholder="question">
+                                    <span class=" form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="text" class="form-control" name="chone" placeholder="choose one (0)">
+                                    <span class=" form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="text" class="form-control" name="chtwo" placeholder="choose two (1)">
+                                    <span class=" form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="text" class="form-control" name="chthree" placeholder="choose three (2)">
+                                    <span class=" form-control-feedback"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="text" class="form-control" name="answer" placeholder="answer  write (0) or (1) or (2)">
+                                    <span class=" form-control-feedback"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block btn-flat">add</button>
+                                  </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                <div class="tab-pane" id="tab_2">
+                    <table class="table table-striped ">
+                        <tr>
+                            <th style="width: 40px">#</th>
+                            <th>Questions</th>
+                            <th style="width: 40px">answer</th>
+                        </tr>
+                        <?php $number = 1 ?>
+                        <?php foreach($questions as $question) { ?>
+                        <tr>
+                            <td><?php echo $number; ?></td>
+                            <td><?php echo $question->qus; ?></td>
+                            <td><span class="badge bg-red"><?php echo $question->ans1; ?></span></td>
+                            <td><span class="badge bg-red"><?php echo $question->ans2; ?></span></td>
+                            <td><span class="badge bg-red"><?php echo $question->ans3; ?></span></td>
+                            <td><span class="badge bg-green"><?php echo $question->answer; ?></span></td>
+                            <td>
+                                <div class="">
+                                    <a href="deleteques.php?id=<?php echo $question->id; ?>" class="btn btn-danger">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php $number++; }  ?>
+                    </table>
+                    </div>
+                <div class="tab-pane" id="tab_3">
+                    <div class="form-group">
+                        <form action="timetest.php" method="post">
+                        <label>time of questions</label><br>
+                        <select name="select" class="form-control select2" style="width: 100%;">
+                            <option value="0.5">30 min</option>
+                            <option value="0.8">47 min</option>
+                            <option value="1">60 min</option>
+                            <option value="1.5">90 min</option>
+                        </select><br>
+                            <label>test of type</label><br>
+                            <select name="general" class="form-control select2" style="width: 100%;">
+                                <?php foreach($time as $t){ ?>
+                                <option value="<?php echo $t->id; ?>"><?php echo $t->type; ?></option>
+                                <?php } ?>
+                            </select><br>
+                        <input type="submit" name="time"  value="add time" class="btn btn-primary btn-block btn-flat">
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+
+

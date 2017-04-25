@@ -1,0 +1,81 @@
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            add new user page
+            <small>it all starts here</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Examples</a></li>
+            <li class="active">Blank page</li>
+        </ol>
+    </section>
+    <section class="content">
+
+
+    <div class="box-body">
+    <?php if(isset($errors)) { ?>
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        <?php foreach($errors as $error) { ?>
+        <ul>
+            <li><?php echo $error; ?></li>
+        </ul>
+        <?php } ?>
+    </div>
+    <?php } ?>
+
+    <form action="adduser.php" method="post">
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" value="<?php if(isset($_SESSION['first']) && !$validation->isValid()){  echo $_SESSION['first']; } ?>"  name="fname" placeholder="first name">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" value="<?php if(isset($_SESSION['last']) && !$validation->isValid()){  echo $_SESSION['last']; } ?>" name="lname" placeholder="last name">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="input-group date">
+            <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" name="date" value="<?php if(isset($_SESSION['date']) && !$validation->isValid()){  echo $_SESSION['date']; } ?>" class="form-control pull-right" id="datepicker" placeholder="yyyy-mm-dd">
+        </div><br>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" value="<?php if(isset($_SESSION['phone']) && !$validation->isValid()){  echo $_SESSION['phone']; } ?>" name="phone" placeholder="phone number">
+            <span class="glyphicon  glyphicon-earphone form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" value="<?php if(isset($_SESSION['facebook']) && !$validation->isValid()){  echo $_SESSION['facebook']; } ?>" name="facebook" placeholder="facebook account">
+            <span class="fa fa-facebook form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="text" value="<?php if(isset($_SESSION['city']) && !$validation->isValid()){  echo $_SESSION['city']; } ?>" class="form-control" name="city" placeholder="city">
+            <span class="fa fa-map form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="text" value="<?php if(isset($_SESSION['address']) && !$validation->isValid()){  echo $_SESSION['address']; } ?>" class="form-control" name="address" placeholder="address">
+            <span class="fa  fa-car form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="email" class="form-control" value="<?php if(isset($_SESSION['email']) && !$validation->isValid()){  echo $_SESSION['email']; } ?>" name="email" placeholder="Email">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" name="rpassword" placeholder="Retype password">
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">add new user</button>
+            </div>
+            <!-- /.col -->
+        </div>
+    </form>
+</div>

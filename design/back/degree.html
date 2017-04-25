@@ -1,0 +1,64 @@
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            degree page
+            <small>it all starts here</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Examples</a></li>
+            <li class="active">Blank page</li>
+        </ol>
+    </section>
+    <section class="content">
+
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <h2>Your Quiz results</h2>
+        <?php if(count($result)>0) { ?>
+        <?php foreach($result as $r){ ?>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>Right answer </td>
+                <td><?php echo  $r['r_ans']; ?></td>
+            </tr>
+            <tr>
+                <td>Wrong answer</td>
+                <td><?php echo  $r['w_ans'];?></td>
+            </tr>
+            <tr>
+                <td>No answer</td>
+                <td><?php echo  $r['n_ans'];?></td>
+            </tr>
+            <tr>
+                <td>Your result</td>
+                <td><?php echo $r['result']."%"; ?></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <label>choose level</label><br>
+        <form action="addstudent.php" method="post">
+        <select name="level" class="form-control select2" style="width: 100%;">
+        <?php foreach($levels as $level){ ?>
+        <option value="<?php echo $level->id; ?>"><?php echo $level->level_name; ?></option>
+        <?php } ?>
+         </select><br>
+        <label>payment</label><br>
+        <select name="payment" class="form-control select2" style="width: 100%;">
+            <?php foreach($payment as $p){ ?>
+            <option value="<?php echo $p->id; ?>"><?php echo $p->payment; ?></option>
+            <?php } ?>
+        </select><br>
+            <input type="submit" name="name" value="add " class="btn btn-primary btn-block btn-flat">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+        </form>
+        </div>
+    <?php } ?>
+    <?php }else{ echo "<h1> not found </h1>"; } ?>
+
+    <div class="col-sm-2"></div>
+</div>

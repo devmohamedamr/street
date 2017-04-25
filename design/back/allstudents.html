@@ -1,0 +1,81 @@
+
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>
+            all students page
+            <small>it all starts here</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Examples</a></li>
+            <li class="active">Blank page</li>
+        </ol>
+    </section>
+    <section class="content">
+
+<!-- DataTables -->
+
+<div class="box" xmlns="http://www.w3.org/1999/html">
+    <div class="box-header">
+        <h3 class="box-title">Data Table With Full Features</h3>
+    </div>
+    <!-- /.box-header -->
+
+    <center>
+    <a onclick='window.location.reload();' >
+        <i class="fa fa-refresh  btn btn-success">  Refresh</i>
+    </a>
+    </center>
+
+    <div class="box-body">
+        <table id="mydata" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>first name</th>
+                <th>last name</th>
+                <th>age</th>
+                <th>phone</th>
+                <th>city</th>
+                <th>address</th>
+                <th>level</th>
+                <th>payment</th>
+            </tr>
+            </thead>
+            <?php  if(count($level)>0) { ?>
+            <tbody>
+            <?php  foreach($level as $l) { ?>
+            <tr>
+                <td><?php echo $l['firstname']; ?></td>
+                <td><?php echo $l['lastname']; ?></td>
+                <?php $cur =   date("Y/m/d") - $l['date']; ?>
+                <td><?php echo $cur; ?></td>
+                <td><?php echo $l['number']; ?></td>
+                <td><?php echo $l['city']; ?></td>
+                <td><?php echo $l['address']; ?></td>
+                <td><?php echo $l['level_name']; ?></td>
+                <td><?php echo $l['payment']; ?></td>
+                <?php } ?>
+            </tr>
+            <?php  }else{ echo '' ;} ?>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>first name</th>
+                <th>last name</th>
+                <th>age</th>
+                <th>phone</th>
+                <th>city</th>
+                <th>address</th>
+                <th>level</th>
+                <th>payment</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    </div>
+<!-- DataTables -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.4/dt-1.10.13/datatables.min.js"></script>
+<script>
+    $('#mydata').DataTable();
+</script>
